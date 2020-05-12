@@ -6,7 +6,7 @@ class UserSongsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: Text('User Songs'),
+        title: Text('My Songs'),
         centerTitle: true,
       ),
       body: ListView(

@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         '/search': (context) => SearchScreen(),
       },
       // default route
-      initialRoute: '/search',
+      initialRoute: '/',
     );
   }
 }

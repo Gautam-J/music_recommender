@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'screens/home.dart';
+import 'screens/search.dart';
+import 'screens/user_songs.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,55 +24,14 @@ class MyApp extends StatelessWidget {
         // Default font family
         fontFamily: 'UbuntuMono',
       ),
-      // Home Route
-      home: HomeView(),
-    );
-  }
-}
-
-class HomeView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        title: Text('Hello World'),
-        centerTitle: true,
-      ),
-      body: ListView(
-        children: <Widget>[
-          Card(
-            child: ListTile(
-              title: Text(
-                'Item 1',
-                style: TextStyle(
-                  fontStyle: FontStyle.italic
-                ),
-              ),
-              leading: Icon(Icons.music_note),
-              trailing: RaisedButton(
-                onPressed: () {},
-                child: Text('Play'),
-              ),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text(
-                'Item 2',
-                style: TextStyle(
-                  fontStyle: FontStyle.italic
-                ),
-              ),
-              leading: Icon(Icons.music_note),
-              trailing: RaisedButton(
-                onPressed: () {},
-                child: Text('Play'),
-              ),
-            ),
-          ),
-        ],
-      ),
+      // Routes for the app
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/user_songs': (context) => UserSongsScreen(),
+        '/search': (context) => SearchScreen(),
+      },
+      // default route
+      initialRoute: '/search',
     );
   }
 }

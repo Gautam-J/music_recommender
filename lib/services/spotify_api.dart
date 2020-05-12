@@ -15,13 +15,17 @@ class SpotifyHelper {
 
   // Function that returns a list of tracks from search results
   Future<List<TrackSimple>> getSearchResults(String searchText) async {
+    // Empty list for all tracks retrieved from results
+    List<TrackSimple> resultTracks = [];
+    // check if user query is null
+    if (searchText == null) {
+      return resultTracks;
+    }
     // Search result
     var _results = await _spotify.search
       .get(searchText)
       .first(10)
       .catchError((err) => debugPrint((err as SpotifyException).message));
-    // Empty list for all tracks retrieved from results
-    List<TrackSimple> resultTracks = [];
 
     // Iterate through each page
     _results.forEach((_pages) {

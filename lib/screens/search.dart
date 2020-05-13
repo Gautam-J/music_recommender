@@ -49,7 +49,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Text('Search'),
                   onPressed: () {
                     userQuery = searchController.text;
-                    if (userQuery != '') {
+                    if (userQuery != null) {
                       Navigator.popAndPushNamed(context, '/search');
                     }
                   },
@@ -66,7 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
               // function to call when query is submitted
               onSubmitted: (value) {
                 userQuery = value;
-                if (userQuery != '') {
+                if (userQuery != null) {
                 Navigator.popAndPushNamed(context, '/search');
                 }
               },

@@ -53,7 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
               'My Songs',
               'View all my favourite songs',
               () {
-              debugPrint('Clicked My Songs');
               Navigator.pop(context);
               Navigator.pushNamed(context, '/user_songs');
             }),
@@ -62,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
               'Search Songs',
               'Search songs and add to My Songs',
               () {
-              debugPrint('Clicked Search Songs');
               Navigator.pop(context);
               Navigator.pushNamed(context, '/search');
             })

@@ -19,20 +19,10 @@ class _SearchScreenState extends State<SearchScreen> {
   // Database helper to save and delete favourite songs
   DatabaseHelper helper = DatabaseHelper();
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
-  void _showScaffold(String message) {
-    _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(message),
-    ));
-  }
-
   @override
   Widget build(BuildContext context) {
     // Scaffold Widget
     return Scaffold(
-      // key for Snackbar
-      key: _scaffoldKey,
       // App bar
       appBar: AppBar(
         title: Text('Search Songs'),
@@ -119,7 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               leading: Icon(Icons.music_note),
                               onTap: () {
                                 // try removing setState
-                                _save(snapshot.data[index].name, snapshot.data[index].uri);
+                                _save(context, snapshot.data[index].name, snapshot.data[index].uri);
                               },
                             ),
                           );
@@ -143,18 +133,25 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  _save(String _name, String _uri) async {
+  // Save track to database
+  _save(BuildContext context, String _name, String _uri) async {
     int result;
     MyTrack _myTrack = MyTrack(_name, _uri);
     result = await helper.insertTrack(_myTrack);
 
     if (result != 0) {
       // Success
-      _showScaffold('Added $_name to Favourite');
+      _showSnackBar(context, 'Added $_name to Favourite');
     } else {
       // failure
-      _showScaffold('Failed to add $_name');
+      _showSnackBar(context, 'Failed to add $_name');
     }
+  }
+
+  // show SnackBar
+  void _showSnackBar(BuildContext context, String message) {
+    final snackBar = SnackBar(content: Text(message));
+    Scaffold.of(context).showSnackBar(snackBar);
   }
 
 }

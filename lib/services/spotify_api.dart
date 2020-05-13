@@ -54,8 +54,7 @@ class SpotifyHelper {
     List<String> _trackIds = List<String>();
 
     _userTracks.forEach((element) {
-      // TODO: Change database to store ID instead of URI
-      _trackIds.add(element.uri.split('spotify:track:')[1]);
+      _trackIds.add(element.sId);
     });
 
     // Get recommendations based on user's songs

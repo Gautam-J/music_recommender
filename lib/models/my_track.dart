@@ -2,24 +2,24 @@ class MyTrack {
 
   int _id;
   String _name;
-  String _uri;
+  String _sId;
 
   // Constructors
-  MyTrack(this._name, this._uri);
-  MyTrack.withId(this._id, this._name, this._uri);
+  MyTrack(this._name, this._sId);
+  MyTrack.withId(this._id, this._name, this._sId);
 
   // getters
   int get id => _id;
   String get name => _name;
-  String get uri => _uri;
+  String get sId => _sId;
 
   // setters
   set name(String newName) {
     this._name = newName;
   }
 
-  set uri(String newUri) {
-    this._uri = uri;
+  set sId(String newSId) {
+    this._sId = sId;
   }
 
   // Convert a MyTrack object to a Map object
@@ -31,7 +31,7 @@ class MyTrack {
     }
 
     map['name'] = _name;
-    map['uri'] = _uri;
+    map['sId'] = _sId;
 
     return map;
   }
@@ -40,7 +40,7 @@ class MyTrack {
   MyTrack.fromMapObject(Map<String, dynamic> map) {
     this._id = map['id'];
     this._name = map['name'];
-    this._uri = map['uri'];
+    this._sId = map['sId'];
   }
 
 }

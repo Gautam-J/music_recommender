@@ -14,7 +14,7 @@ class DatabaseHelper {
   String trackTable = 'track_table';
   String colId = 'id';
   String colName = 'name';
-  String colUri = 'uri';
+  String colSId = 'sId';
 
   // Named constructor to create an instance of DatabaseHelper
   DatabaseHelper._createInstance();
@@ -54,7 +54,7 @@ class DatabaseHelper {
       'CREATE TABLE $trackTable('
         '$colId INTEGER PRIMARY KEY AUTOINCREMENT,'
         '$colName TEXT,'
-        '$colUri TEXT)'
+        '$colSId TEXT)'
     );
   }
 

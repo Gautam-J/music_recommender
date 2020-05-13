@@ -109,7 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               leading: Icon(Icons.music_note),
                               onTap: () {
                                 // try removing setState
-                                _save(context, snapshot.data[index].name, snapshot.data[index].uri);
+                                _save(context, snapshot.data[index].name, snapshot.data[index].id);
                               },
                             ),
                           );
@@ -134,14 +134,14 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   // Save track to database
-  _save(BuildContext context, String _name, String _uri) async {
+  _save(BuildContext context, String _name, String _sId) async {
     int result;
-    MyTrack _myTrack = MyTrack(_name, _uri);
+    MyTrack _myTrack = MyTrack(_name, _sId);
     result = await helper.insertTrack(_myTrack);
 
     if (result != 0) {
       // Success
-      _showSnackBar(context, 'Added $_name to Favourite');
+      _showSnackBar(context, 'Added $_name to My Songs');
     } else {
       // failure
       _showSnackBar(context, 'Failed to add $_name');

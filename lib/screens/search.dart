@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:music_recommender/services/spotify_api.dart';
+import 'package:music_recommender/utils/database_helper.dart';
+import 'package:music_recommender/models/my_track.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -10,16 +12,27 @@ class _SearchScreenState extends State<SearchScreen> {
 
   // Create an instance of spotify helper
   static SpotifyHelper spotify = SpotifyHelper();
-
   // Controller for getting search query
   TextEditingController searchController = TextEditingController();
   // initial empty user query
   static String userQuery;
+  // Database helper to save and delete favourite songs
+  DatabaseHelper helper = DatabaseHelper();
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  void _showScaffold(String message) {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(message),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
     // Scaffold Widget
     return Scaffold(
+      // key for Snackbar
+      key: _scaffoldKey,
       // App bar
       appBar: AppBar(
         title: Text('Search Songs'),
@@ -104,12 +117,10 @@ class _SearchScreenState extends State<SearchScreen> {
                               subtitle: Text(artistsList.toString().replaceAll('[', '').replaceAll(']', '')),
                               // Music Icon
                               leading: Icon(Icons.music_note),
-                              // Favourite Icon
-                              // TODO: Change icon if track already in user's database
-                              trailing: Icon(
-                                Icons.favorite_border,
-                                color: Theme.of(context).accentColor,
-                              ),
+                              onTap: () {
+                                // try removing setState
+                                _save(snapshot.data[index].name, snapshot.data[index].uri);
+                              },
                             ),
                           );
                         },
@@ -131,4 +142,19 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
     );
   }
+
+  _save(String _name, String _uri) async {
+    int result;
+    MyTrack _myTrack = MyTrack(_name, _uri);
+    result = await helper.insertTrack(_myTrack);
+
+    if (result != 0) {
+      // Success
+      _showScaffold('Added $_name to Favourite');
+    } else {
+      // failure
+      _showScaffold('Failed to add $_name');
+    }
+  }
+
 }

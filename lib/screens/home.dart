@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:music_recommender/services/spotify_api.dart';
+import 'package:spotify/spotify.dart';
 
 // Home screen of the app that should show the music recommendations
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  // Spotify helper to get recommendations
+  // TODO: Probably put this in the loading screen
+  SpotifyHelper spotify = SpotifyHelper();
+
   @override
   Widget build(BuildContext context) {
     // Main widget
@@ -57,10 +69,19 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
+      // Temporary FAB
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.check),
+        onPressed: () async {
+          List<TrackSimple> _recommendedTracks = await spotify.getRecommendations();
+          _recommendedTracks.forEach((element) {
+            debugPrint(element.name);
+          });
+        },
+      ),
     );
   }
 
-  // Returns a List Tile that is shown in the drawer
   Widget _getDrawerElement(String title, String subtitle, Function onTapFunc) {
     // List Tile Widget
     return ListTile(

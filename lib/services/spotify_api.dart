@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:music_recommender/models/my_track.dart';
 import 'package:spotify/spotify.dart';
+import 'package:music_recommender/utils/database_helper.dart';
 
 class SpotifyHelper {
 
@@ -12,6 +14,8 @@ class SpotifyHelper {
   );
   // Spotify object
   var _spotify = SpotifyApi(_credentials);
+  // Database helper object
+  DatabaseHelper databaseHelper = DatabaseHelper();
 
   // Function that returns a list of tracks from search results
   Future<List<TrackSimple>> getSearchResults(String searchText) async {
@@ -40,5 +44,26 @@ class SpotifyHelper {
     });
     // return final list of all track items
     return resultTracks;
+  }
+
+  // Function that returns a list of recommendation tracks
+  Future<List<TrackSimple>> getRecommendations() async {
+    // List of user's favourite songs
+    List<MyTrack> _userTracks = await databaseHelper.getTrackList();
+    // List of track IDs
+    List<String> _trackIds = List<String>();
+
+    _userTracks.forEach((element) {
+      // TODO: Change database to store ID instead of URI
+      _trackIds.add(element.uri.split('spotify:track:')[1]);
+    });
+
+    // Get recommendations based on user's songs
+    Recommendations _recommendations = await _spotify.recommendations.get(
+      seedTracks: _trackIds,
+      limit: 50,
+    );
+
+    return _recommendations.tracks;
   }
 }

@@ -160,37 +160,17 @@ class _HomeScreenState extends State<HomeScreen> {
               // Music Icon
               leading: Icon(Icons.music_note),
               onTap: () {
-                // TODO: Go to details screen
-                _save(context, _recommended[index].name, _recommended[index].id);
+                // Navigate to details page, sending track ID along with it
+                Navigator.pushNamed(context, '/details', arguments: {
+                  'track_sId': _recommended[index].id,
+                  'track_Name': _recommended[index].name
+                });
               },
             ),
           ),
         );
       },
     );
-
-  }
-
-  // TODO: Put these in details page, therefore code will not be repeated
-  // Save track to database
-  _save(BuildContext context, String _name, String _sId) async {
-    int result;
-    MyTrack _myTrack = MyTrack(_name, _sId);
-    result = await helper.insertTrack(_myTrack);
-
-    if (result != 0) {
-      // Success
-      _showSnackBar(context, 'Added $_name to My Songs');
-    } else {
-      // failure
-      _showSnackBar(context, 'Failed to add $_name');
-    }
-  }
-
-  // show SnackBar
-  void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
-    Scaffold.of(context).showSnackBar(snackBar);
   }
 
 }

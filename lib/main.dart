@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_recommender/screens/details.dart';
 import 'package:music_recommender/screens/home.dart';
 import 'package:music_recommender/screens/search.dart';
 import 'package:music_recommender/screens/loading.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/user_songs': (context) => UserSongsScreen(),
         '/search': (context) => SearchScreen(),
+        '/details': (context) => DetailsScreen()
       },
       // default route
       initialRoute: '/',

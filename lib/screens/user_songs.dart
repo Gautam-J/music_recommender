@@ -77,9 +77,13 @@ class _UserSongsScreenState extends State<UserSongsScreen> {
                   _delete(context, trackList[index]);
                 },
               ),
-              // TODO: Navigate to details page
               onTap: () {
-                debugPrint('You clicked ${this.trackList[index].name}');
+                // Navigate to details page, sending track ID along with it
+                Navigator.pushNamed(context, '/details', arguments: {
+                  'track_sId': this.trackList[index].sId,
+                  'track_Name': this.trackList[index].name,
+                  'onUserList': true
+                });
               },
             ),
           ),

@@ -71,4 +71,10 @@ class SpotifyHelper {
 
     return _recommendations.tracks;
   }
+
+  // Function that returns a Track object given track ID
+  Future<Track> getTrackData(String _trackSId) async {
+    Track _track = await _spotify.tracks.get(_trackSId);
+    return _track;
+  }
 }

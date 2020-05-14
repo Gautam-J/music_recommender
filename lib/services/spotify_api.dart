@@ -64,7 +64,8 @@ class SpotifyHelper {
 
     // Get recommendations based on user's songs
     Recommendations _recommendations = await _spotify.recommendations.get(
-      seedTracks: _trackIds,
+      // max seeds: 5, get the last 5 as that will be more accurate
+      seedTracks: _trackIds.length <= 5 ? _trackIds : _trackIds.sublist(_trackIds.length - 5),
       limit: 50,
     );
 

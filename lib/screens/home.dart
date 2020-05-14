@@ -63,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               'Recommendations',
               'Refresh your recommendations',
               () {
+                //Clear stack and push to the route
                 Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
               }
             ),

@@ -52,13 +52,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       // Build widgets
                       itemBuilder: (context, index) {
                         // Artist name
-                        // TODO: add popularity and image
+                        // TODO: add popularity and artist image
                         return Text('Artist: ${snapshot.data.artists[index].name}');
                       },
                     ),
                   ),
                   // Album name
-                  // TODO: add image
+                  // TODO: add album image
                   Text('Album Name: ${snapshot.data.album.name}'),
                   // Duration
                   Text('Duration (secs): ${snapshot.data.durationMs / 1000}'),

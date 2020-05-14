@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_recommender/models/my_track.dart';
 import 'package:music_recommender/utils/database_helper.dart';
 import 'package:music_recommender/services/spotify_api.dart';
 import 'package:spotify/spotify.dart';

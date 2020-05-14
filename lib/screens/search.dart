@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_recommender/services/spotify_api.dart';
 import 'package:music_recommender/utils/database_helper.dart';
-import 'package:music_recommender/models/my_track.dart';
 
 class SearchScreen extends StatefulWidget {
   @override

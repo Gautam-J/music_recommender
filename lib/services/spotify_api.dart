@@ -50,6 +50,11 @@ class SpotifyHelper {
   Future<List<TrackSimple>> getRecommendations() async {
     // List of user's favourite songs
     List<MyTrack> _userTracks = await databaseHelper.getTrackList();
+
+    if (_userTracks.length == 0) {
+      return null;
+    }
+
     // List of track IDs
     List<String> _trackIds = List<String>();
 

@@ -1,7 +1,5 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:spotify/spotify.dart';
 import 'package:music_recommender/services/spotify_api.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -19,9 +17,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
   // Function that gets recommendations and pushes to home page
   void _getRecommendationsList() async {
     // get recommendations
-    List<TrackSimple> _recommendedTracks = await spotify.getRecommendations();
+    var _recommendedTracks = await spotify.getRecommendations();
     // Wait for 2 seconds further
-    Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 1));
     // Push to recommendations to home page
     Navigator.pushReplacementNamed(context, '/home', arguments: {
       'recommendations': _recommendedTracks,

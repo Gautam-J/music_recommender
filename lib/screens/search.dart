@@ -108,7 +108,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               // Music Icon
                               leading: Icon(Icons.music_note),
                               onTap: () {
-                                // try removing setState
+                                // TODO: Go to details page
                                 _save(context, snapshot.data[index].name, snapshot.data[index].id);
                               },
                             ),
@@ -133,6 +133,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+  // TODO: Put these in details page, therefore code will not be repeated
   // Save track to database
   _save(BuildContext context, String _name, String _sId) async {
     int result;

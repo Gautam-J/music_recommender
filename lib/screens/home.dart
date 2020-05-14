@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () async {
           List<TrackSimple> _recommendedTracks = await spotify.getRecommendations();
           _recommendedTracks.forEach((element) {
-            debugPrint(element.name);
+            debugPrint('${element.name} | ${element.artists[0].name}');
           });
         },
       ),

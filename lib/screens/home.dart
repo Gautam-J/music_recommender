@@ -83,6 +83,15 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/search');
               }
+            ),
+            // Navigate to About page
+            _getDrawerElement(
+              'About',
+              'About Me',
+              () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/about');
+              }
             )
           ],
         ),

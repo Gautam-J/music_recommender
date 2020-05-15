@@ -37,7 +37,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
     // Main Scaffold Widget
     return Scaffold(
       // bg color of the scaffold
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).backgroundColor,
       // main body
       body: Center(
         // Animation while getting recommendations

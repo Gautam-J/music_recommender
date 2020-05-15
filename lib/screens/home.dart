@@ -39,61 +39,66 @@ class _HomeScreenState extends State<HomeScreen> {
       body: _getListView(),
       // Drawer for navigating between screens
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          // Elements in the drawer
-          children: <Widget>[
-            // Main drawer header at the top
-            DrawerHeader(
-              child: Center(
-                child: Text(
-                  'Welcome to Music Recommender!',
-                  style: TextStyle(
-                    fontSize: 30.0,
+        child: Container(
+          // color of the drawer
+          color: Theme.of(context).primaryColor,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            // Elements in the drawer
+            children: <Widget>[
+              // Main drawer header at the top
+              DrawerHeader(
+                child: Center(
+                  child: Text(
+                    'Welcome to Music Recommender!',
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).accentColor,
+                ),
               ),
-              decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
+              // Navigate to recommendations (for refreshing)
+              _getDrawerElement(
+                'Recommendations',
+                'Refresh your recommendations',
+                () {
+                  //Clear stack and push to the route
+                  Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                }
               ),
-            ),
-            // Navigate to recommendations (for refreshing)
-            _getDrawerElement(
-              'Recommendations',
-              'Refresh your recommendations',
-              () {
-                //Clear stack and push to the route
-                Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-              }
-            ),
-            // Navigate to User Songs
-            _getDrawerElement(
-              'My Songs',
-              'View all my favourite songs',
-              () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/user_songs');
-              }
-            ),
-            // Navigate to Search Songs
-            _getDrawerElement(
-              'Search Songs',
-              'Search songs and add to My Songs',
-              () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/search');
-              }
-            ),
-            // Navigate to About page
-            _getDrawerElement(
-              'About',
-              'About Me',
-              () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/about');
-              }
-            )
-          ],
+              // Navigate to User Songs
+              _getDrawerElement(
+                'My Songs',
+                'View all my favourite songs',
+                () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/user_songs');
+                }
+              ),
+              // Navigate to Search Songs
+              _getDrawerElement(
+                'Search Songs',
+                'Search songs and add to My Songs',
+                () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/search');
+                }
+              ),
+              // Navigate to About page
+              _getDrawerElement(
+                'About',
+                'About Me',
+                () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/about');
+                }
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -105,13 +110,15 @@ class _HomeScreenState extends State<HomeScreen> {
       title: Text(
         title,
         style: TextStyle(
-          fontSize: 20.0
+          fontSize: 20.0,
+          color: Colors.white,
         ),
       ),
       subtitle: Text(
         subtitle,
         style: TextStyle(
-          fontStyle: FontStyle.italic
+          fontStyle: FontStyle.italic,
+          color: Colors.grey,
         ),
       ),
       onTap: onTapFunc,
@@ -162,11 +169,24 @@ class _HomeScreenState extends State<HomeScreen> {
             // List tile widget
             child: ListTile(
               // Name of the track
-              title: Text(_recommended[index].name),
+              title: Text(
+                _recommended[index].name,
+                style: TextStyle(
+                  color: Colors.grey[200]
+                )
+              ),
               // Artists
-              subtitle: Text(artistsList.toString().replaceAll('[', '').replaceAll(']', '')),
+              subtitle: Text(
+                artistsList.toString().replaceAll('[', '').replaceAll(']', ''),
+                style: TextStyle(
+                  color: Colors.grey[500]
+                )
+              ),
               // Music Icon
-              leading: Icon(Icons.music_note),
+              leading: Icon(
+                Icons.music_note,
+                color: Theme.of(context).accentColor,
+              ),
               onTap: () {
                 // Navigate to details page, sending track ID along with it
                 Navigator.pushNamed(context, '/details', arguments: {

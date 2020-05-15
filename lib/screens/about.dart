@@ -11,6 +11,8 @@ class _AboutScreenState extends State<AboutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // bg of the scaffold
+      backgroundColor: Theme.of(context).backgroundColor,
       // Appbar
       appBar: AppBar(
         title: Text('About'),
@@ -41,7 +43,8 @@ class _AboutScreenState extends State<AboutScreen> {
             Text(
               'NAME',
               style: TextStyle(
-                letterSpacing: 2.0
+                letterSpacing: 2.0,
+                color: Colors.grey[500],
               ),
             ),
             SizedBox(height: 10.0),
@@ -49,7 +52,7 @@ class _AboutScreenState extends State<AboutScreen> {
             Text(
               'Gautam J',
               style: TextStyle(
-                color: Colors.grey[800],
+                color: Colors.grey[200],
                 fontWeight: FontWeight.bold,
                 fontSize: 28.0,
                 letterSpacing: 2.0,
@@ -60,7 +63,8 @@ class _AboutScreenState extends State<AboutScreen> {
             Text(
               'EMAIL',
               style: TextStyle(
-                letterSpacing: 2.0
+                letterSpacing: 2.0,
+                color: Colors.grey[500],
               ),
             ),
             SizedBox(height: 10.0),
@@ -68,7 +72,7 @@ class _AboutScreenState extends State<AboutScreen> {
             Text(
               'gautam.jayapal@gmail.com',
               style: TextStyle(
-                color: Colors.grey[800],
+                color: Colors.grey[200],
                 fontWeight: FontWeight.bold,
                 fontSize: 28.0,
                 letterSpacing: 2.0,
@@ -79,7 +83,8 @@ class _AboutScreenState extends State<AboutScreen> {
             Text(
               'SOCIAL',
               style: TextStyle(
-                letterSpacing: 2.0
+                letterSpacing: 2.0,
+                color: Colors.grey[500],
               ),
             ),
             SizedBox(height: 10.0),
@@ -91,6 +96,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 children: <Widget>[
                   // facebook
                   IconButton(
+                    color: Colors.grey[500],
                     icon: FaIcon(FontAwesomeIcons.facebook),
                     onPressed: () {
                       setState(() {
@@ -100,6 +106,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   ),
                   // instagram
                   IconButton(
+                    color: Colors.grey[500],
                     icon: FaIcon(FontAwesomeIcons.instagram),
                     onPressed: () {
                       setState(() {
@@ -109,6 +116,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   ),
                   // twitter
                   IconButton(
+                    color: Colors.grey[500],
                     icon: FaIcon(FontAwesomeIcons.twitter),
                     onPressed: () {
                       setState(() {
@@ -118,6 +126,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   ),
                   // github
                   IconButton(
+                    color: Colors.grey[500],
                     icon: FaIcon(FontAwesomeIcons.github),
                     onPressed: () {
                       setState(() {

@@ -25,6 +25,9 @@ class _UserSongsScreenState extends State<UserSongsScreen> {
     }
 
     return Scaffold(
+      // bg color of the whole scaffold
+      backgroundColor: Theme.of(context).backgroundColor,
+      // appbar
       appBar: AppBar(
         title: Text('My Songs'),
         centerTitle: true,
@@ -40,14 +43,15 @@ class _UserSongsScreenState extends State<UserSongsScreen> {
           Navigator.pushReplacementNamed(context, '/search');
         },
         tooltip: 'Search new songs',
-        child: Icon(Icons.search),
+        child: Icon(
+          Icons.search,
+          color: Colors.grey[200],
+        ),
       ),
     );
   }
 
   ListView getTrackListView() {
-    // Custom text style from theme
-    TextStyle titleStyle = Theme.of(context).textTheme.subtitle1;
     // ListView builder
     return ListView.builder(
       // Number of elements
@@ -69,7 +73,12 @@ class _UserSongsScreenState extends State<UserSongsScreen> {
                 child: Text(this.trackList[index].name[0]),
               ),
               // Main title of the widget
-              title: Text(this.trackList[index].name, style: titleStyle),
+              title: Text(
+                this.trackList[index].name,
+                style: TextStyle(
+                  color: Colors.grey[200],
+                )
+              ),
               // Trailing icon for deleting song
               trailing: GestureDetector(
                 child: Icon(Icons.delete, color: Colors.red[500]),
@@ -101,7 +110,10 @@ class _UserSongsScreenState extends State<UserSongsScreen> {
 
   // Show snackbar
   void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
+    final snackBar = SnackBar(
+      content: Text(message),
+      backgroundColor: Theme.of(context).primaryColor,
+    );
     Scaffold.of(context).showSnackBar(snackBar);
   }
 

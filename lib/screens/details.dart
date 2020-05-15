@@ -24,6 +24,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     // Scaffold Widget
     return Scaffold(
+      // bg of the whole scaffold
+      backgroundColor: Theme.of(context).backgroundColor,
       // Appbar
       appBar: AppBar(
         title: Text('Details'),
@@ -50,7 +52,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       'TRACK NAME',
                       style: TextStyle(
-                        letterSpacing: 2.0
+                        letterSpacing: 2.0,
+                        color: Colors.grey[500],
+                        fontSize: 18.0,
                       ),
                     ),
                     SizedBox(height: 10.0),
@@ -58,7 +62,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       snapshot.data.name,
                       style: TextStyle(
-                        color: Colors.grey[800],
+                        color: Colors.grey[200],
                         fontWeight: FontWeight.bold,
                         fontSize: 28.0,
                         letterSpacing: 2.0,
@@ -69,7 +73,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       'DURATION (secs)',
                       style: TextStyle(
-                        letterSpacing: 2.0
+                        letterSpacing: 2.0,
+                        color: Colors.grey[500],
+                        fontSize: 18.0,
                       ),
                     ),
                     SizedBox(height: 10.0),
@@ -77,7 +83,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       '${snapshot.data.durationMs / 1000}',
                       style: TextStyle(
-                        color: Colors.grey[800],
+                        color: Colors.grey[200],
                         fontWeight: FontWeight.bold,
                         fontSize: 28.0,
                         letterSpacing: 2.0,
@@ -88,7 +94,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       'POPULARITY',
                       style: TextStyle(
-                        letterSpacing: 2.0
+                        letterSpacing: 2.0,
+                        color: Colors.grey[500],
+                        fontSize: 18.0,
                       ),
                     ),
                     SizedBox(height: 10.0),
@@ -96,7 +104,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       '${snapshot.data.popularity}',
                       style: TextStyle(
-                        color: Colors.grey[800],
+                        color: Colors.grey[200],
                         fontWeight: FontWeight.bold,
                         fontSize: 28.0,
                         letterSpacing: 2.0,
@@ -107,7 +115,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       'EXPLICIT',
                       style: TextStyle(
-                        letterSpacing: 2.0
+                        letterSpacing: 2.0,
+                        color: Colors.grey[500],
+                        fontSize: 18.0,
                       ),
                     ),
                     SizedBox(height: 10.0),
@@ -115,7 +125,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       '${snapshot.data.explicit}',
                       style: TextStyle(
-                        color: Colors.grey[800],
+                        color: Colors.grey[200],
                         fontWeight: FontWeight.bold,
                         fontSize: 28.0,
                         letterSpacing: 2.0,
@@ -127,6 +137,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       'ARTIST',
                       style: TextStyle(
                         letterSpacing: 2.0,
+                        color: Colors.grey[500],
+                        fontSize: 18.0,
                       )
                     ),
                     SizedBox(height: 10.0),
@@ -147,7 +159,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             Text(
                               snapshot.data.artists[index].name,
                               style: TextStyle(
-                                color: Colors.grey[800],
+                                color: Colors.grey[200],
                                 fontWeight: FontWeight.bold,
                                 fontSize: 28.0,
                                 letterSpacing: 2.0,
@@ -163,7 +175,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Text(
                       'ALBUM',
                       style: TextStyle(
-                        letterSpacing: 2.0
+                        letterSpacing: 2.0,
+                        color: Colors.grey[500],
+                        fontSize: 18.0,
                       ),
                     ),
                     SizedBox(height: 10.0),
@@ -174,7 +188,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         title: Text(
                           snapshot.data.album.name,
                           style: TextStyle(
-                            color: Colors.grey[800],
+                            color: Colors.grey[200],
                             fontWeight: FontWeight.bold,
                             fontSize: 28.0,
                             letterSpacing: 2.0,
@@ -224,7 +238,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       // FAB to save
       floatingActionButton: FloatingActionButton(
         // Plus icon
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.grey[200]),
         // bg color of the icon
         backgroundColor: Theme.of(context).accentColor,
         // tool tip when long pressed

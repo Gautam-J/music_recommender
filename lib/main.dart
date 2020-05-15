@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
         // Default colors of the app
         primaryColor: Colors.grey[900],
         accentColor: Colors.blue,
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.black,
         // Colors for various widgets
-        cardColor: Colors.grey[300],
+        cardColor: Colors.grey[900],
         buttonColor: Colors.blue,
         // Default font family
         fontFamily: 'UbuntuMono',

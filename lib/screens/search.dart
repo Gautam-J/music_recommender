@@ -22,6 +22,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     // Scaffold Widget
     return Scaffold(
+      //bg of the scaffold
+      backgroundColor: Theme.of(context).backgroundColor,
       // App bar
       appBar: AppBar(
         title: Text('Search Songs'),
@@ -44,11 +46,17 @@ class _SearchScreenState extends State<SearchScreen> {
                 // styling hint text
                 hintStyle: TextStyle(
                   fontSize: 18.0,
-                  fontStyle: FontStyle.italic
+                  fontStyle: FontStyle.italic,
+                  color: Colors.grey[500]
                 ),
                 // Search button at the right
                 suffix: FlatButton(
-                  child: Text('Search'),
+                  child: Text(
+                    'Search',
+                    style: TextStyle(
+                      color: Colors.grey[500]
+                    )
+                  ),
                   onPressed: () {
                     userQuery = searchController.text;
                     if (userQuery != null) {
@@ -57,11 +65,15 @@ class _SearchScreenState extends State<SearchScreen> {
                   },
                 ),
                 // Search icon at the left
-                prefixIcon: Icon(Icons.search)
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.grey[500],
+                )
               ),
               // Styling user query
               style: TextStyle(
                 fontSize: 20.0,
+                color: Colors.grey[200]
               ),
               // controller to retrieve value
               controller: searchController,
@@ -101,11 +113,24 @@ class _SearchScreenState extends State<SearchScreen> {
                             // List tile widget
                             child: ListTile(
                               // Name of the track
-                              title: Text(snapshot.data[index].name),
+                              title: Text(
+                                snapshot.data[index].name,
+                                style: TextStyle(
+                                  color: Colors.grey[200]
+                                )
+                              ),
                               // Artists
-                              subtitle: Text(artistsList.toString().replaceAll('[', '').replaceAll(']', '')),
+                              subtitle: Text(
+                                artistsList.toString().replaceAll('[', '').replaceAll(']', ''),
+                                style: TextStyle(
+                                  color: Colors.grey[500]
+                                )
+                              ),
                               // Music Icon
-                              leading: Icon(Icons.music_note),
+                              leading: Icon(
+                                Icons.music_note,
+                                color: Theme.of(context).accentColor,
+                              ),
                               onTap: () {
                                 // Navigate to details page, sending track ID along with it
                                 Navigator.pushNamed(context, '/details', arguments: {

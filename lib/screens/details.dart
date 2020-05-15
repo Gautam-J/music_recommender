@@ -26,6 +26,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       // Appbar
       appBar: AppBar(
         title: Text('Details'),
+        centerTitle: true,
       ),
       // Main Body
       body: FutureBuilder(
@@ -35,37 +36,158 @@ class _DetailsScreenState extends State<DetailsScreen> {
         builder: (context, snapshot) {
           // If async await is completed
           if (snapshot.connectionState == ConnectionState.done) {
-            // TODO: Customize to show all details of the Track object
-            return Container(
-              // color of the background container
-              color: Colors.white,
-              // Main Body
+            return Padding(
+              // padding
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
+              // Main column widget
               child: Column(
+                // Alignment such that it starts from left most
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  // Track name
-                  Text('Track Name: ${snapshot.data.name}'),
-                  // Artists
+                  // Heading for track name
+                  Text(
+                    'TRACK NAME',
+                    style: TextStyle(
+                      letterSpacing: 2.0
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  // Track Name
+                  Text(
+                    snapshot.data.name,
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28.0,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                  SizedBox(height: 30.0),
+                  // Heading for duration
+                  Text(
+                    'DURATION (secs)',
+                    style: TextStyle(
+                      letterSpacing: 2.0
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  // Duration in secs
+                  Text(
+                    '${snapshot.data.durationMs / 1000}',
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28.0,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                  SizedBox(height: 30.0),
+                  // Heading for Popularity
+                  Text(
+                    'POPULARITY',
+                    style: TextStyle(
+                      letterSpacing: 2.0
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  // Popularity of the track
+                  Text(
+                    '${snapshot.data.popularity}',
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28.0,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                  SizedBox(height: 30.0),
+                  // Heading for explicit
+                  Text(
+                    'EXPLICIT',
+                    style: TextStyle(
+                      letterSpacing: 2.0
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  // Explicit or not
+                  Text(
+                    '${snapshot.data.explicit}',
+                    style: TextStyle(
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28.0,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                  SizedBox(height: 30.0),
+                  // heading for album
+                  Text(
+                    'ALBUM',
+                    style: TextStyle(
+                      letterSpacing: 2.0
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  // album
+                  Card(
+                    child: ListTile(
+                      // album name
+                      title: Text(
+                        snapshot.data.album.name,
+                        style: TextStyle(
+                          color: Colors.grey[800],
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.0,
+                          letterSpacing: 2.0,
+                        ),
+                      ),
+                      // TODO: add album image
+                      trailing: Icon(Icons.image),
+                    ),
+                  ),
+                  SizedBox(height: 30.0),
+                  // Heading for Artists
+                  Text(
+                    'ARTIST',
+                    style: TextStyle(
+                      letterSpacing: 2.0,
+                    )
+                  ),
+                  SizedBox(height: 10.0),
+                  // Artist
                   Expanded(
                     child: ListView.builder(
                       // number of artists in track
                       itemCount: snapshot.data.artists.length,
                       // Build widgets
                       itemBuilder: (context, index) {
-                        // Artist name
-                        // TODO: add popularity and artist image
-                        return Text('Artist: ${snapshot.data.artists[index].name}');
+                        return Column(
+                          // Start from left to right
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            // Card for each artist
+                            Card(
+                              // List Tile for each artist
+                              child: ListTile(
+                                // Artist name
+                                title: Text(
+                                  snapshot.data.artists[index].name,
+                                  style: TextStyle(
+                                    color: Colors.grey[800],
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 24.0,
+                                    letterSpacing: 2.0,
+                                  ),
+                                ),
+                                // TODO: add artist image
+                                trailing: Icon(Icons.image),
+                              ),
+                            ),
+                          ],
+                        );
                       },
                     ),
                   ),
-                  // Album name
-                  // TODO: add album image
-                  Text('Album Name: ${snapshot.data.album.name}'),
-                  // Duration
-                  Text('Duration (secs): ${snapshot.data.durationMs / 1000}'),
-                  // Explicit
-                  Text('Explicit: ${snapshot.data.explicit}'),
-                  // Popularity
-                  Text('Popularity: ${snapshot.data.popularity}'),
                 ],
               ),
             );
@@ -90,7 +212,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
         tooltip: 'Add to My Songs',
         // Save on press
         onPressed: () {
-          debugPrint('On user list: ${data['onUserList']}');
           if (data['onUserList'] == null) {
             _save(context, data['track_Name'], data['track_sId']);
             Navigator.pop(context);

@@ -1,16 +1,25 @@
-# music_recommender
+# Recommelody
 
-A new Flutter project.
+A flutter app, that recommends music based on user favourites, using the Spotify Web API.
 
-## Getting Started
+## Download APK
 
-This project is a starting point for a Flutter application.
+Download the fat APK [here](https://github.com/Gautam-J/music_recommender/releases/download/v1.0/recommelody.apk).
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Loading Screen
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![loading](readme_media/loading.jpg)
+
+### Recommendations
+
+![recommendations](readme_media/recommendations.jpg)
+
+### Sidebar
+
+![sidebar](readme_media/drawer.jpg)
+
+### Detailed View
+
+![details](readme_media/details.jpg)

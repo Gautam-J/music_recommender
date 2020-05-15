@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:music_recommender/services/spotify_api.dart';
 import 'package:music_recommender/utils/database_helper.dart';
 import 'package:music_recommender/models/my_track.dart';
@@ -167,30 +168,44 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ),
                     SizedBox(height: 10.0),
                     // album
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 100.0),
-                      child: Card(
-                        child: ListTile(
-                          // album name
-                          title: Text(
-                            snapshot.data.album.name,
-                            style: TextStyle(
-                              color: Colors.grey[800],
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24.0,
-                              letterSpacing: 2.0,
-                            ),
+                    Card(
+                      child: ListTile(
+                        // album name
+                        title: Text(
+                          snapshot.data.album.name,
+                          style: TextStyle(
+                            color: Colors.grey[800],
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28.0,
+                            letterSpacing: 2.0,
                           ),
-                          leading: Padding(
-                            padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                            child: GestureDetector(
-                              child: Image.network(snapshot.data.album.images[snapshot.data.album.images.length - 1].url),
-                            ),
-                          ),
+                        ),
+                        // Album Image
+                        leading: Padding(
+                          padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                          child: Image.network(snapshot.data.album.images[snapshot.data.album.images.length - 1].url),
                         ),
                       ),
                     ),
-                    SizedBox(height: 30.0),
+                    SizedBox(height: 20.0),
+                    // Button to take to spotify
+                    RaisedButton(
+                      child: Text(
+                        'Open in Spotify',
+                        style: TextStyle(
+                          fontSize: 18,
+                          letterSpacing: 2.0,
+                        )
+                      ),
+                      // Color of button
+                      color: Colors.blue,
+                      onPressed: () {
+                        setState(() {
+                          _launchURL(snapshot.data.externalUrls.spotify);
+                        });
+                      },
+                    ),
+                    SizedBox(height: 20.0),
                   ],
                 ),
               ),
@@ -229,6 +244,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
   _save(BuildContext context, String _name, String _sId) async {
     MyTrack _myTrack = MyTrack(_name, _sId);
     await helper.insertTrack(_myTrack);
+  }
+
+  // Function that launches an URL
+  _launchURL(String _url) async {
+    if (await canLaunch(_url)) {
+      await launch(_url);
+    } else {
+      throw 'Could not launch $_url';
+    }
   }
 
 }

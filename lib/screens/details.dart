@@ -40,123 +40,100 @@ class _DetailsScreenState extends State<DetailsScreen> {
               // padding
               padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
               // Main column widget
-              child: Column(
-                // Alignment such that it starts from left most
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  // Heading for track name
-                  Text(
-                    'TRACK NAME',
-                    style: TextStyle(
-                      letterSpacing: 2.0
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  // Track Name
-                  Text(
-                    snapshot.data.name,
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28.0,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  SizedBox(height: 30.0),
-                  // Heading for duration
-                  Text(
-                    'DURATION (secs)',
-                    style: TextStyle(
-                      letterSpacing: 2.0
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  // Duration in secs
-                  Text(
-                    '${snapshot.data.durationMs / 1000}',
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28.0,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  SizedBox(height: 30.0),
-                  // Heading for Popularity
-                  Text(
-                    'POPULARITY',
-                    style: TextStyle(
-                      letterSpacing: 2.0
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  // Popularity of the track
-                  Text(
-                    '${snapshot.data.popularity}',
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28.0,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  SizedBox(height: 30.0),
-                  // Heading for explicit
-                  Text(
-                    'EXPLICIT',
-                    style: TextStyle(
-                      letterSpacing: 2.0
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  // Explicit or not
-                  Text(
-                    '${snapshot.data.explicit}',
-                    style: TextStyle(
-                      color: Colors.grey[800],
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28.0,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  SizedBox(height: 30.0),
-                  // heading for album
-                  Text(
-                    'ALBUM',
-                    style: TextStyle(
-                      letterSpacing: 2.0
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  // album
-                  Card(
-                    child: ListTile(
-                      // album name
-                      title: Text(
-                        snapshot.data.album.name,
-                        style: TextStyle(
-                          color: Colors.grey[800],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.0,
-                          letterSpacing: 2.0,
-                        ),
+              child: SingleChildScrollView(
+                child: Column(
+                  // Alignment such that it starts from left most
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    // Heading for track name
+                    Text(
+                      'TRACK NAME',
+                      style: TextStyle(
+                        letterSpacing: 2.0
                       ),
-                      // TODO: add album image
-                      trailing: Icon(Icons.image),
                     ),
-                  ),
-                  SizedBox(height: 30.0),
-                  // Heading for Artists
-                  Text(
-                    'ARTIST',
-                    style: TextStyle(
-                      letterSpacing: 2.0,
-                    )
-                  ),
-                  SizedBox(height: 10.0),
-                  // Artist
-                  Expanded(
-                    child: ListView.builder(
+                    SizedBox(height: 10.0),
+                    // Track Name
+                    Text(
+                      snapshot.data.name,
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28.0,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                    // Heading for duration
+                    Text(
+                      'DURATION (secs)',
+                      style: TextStyle(
+                        letterSpacing: 2.0
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    // Duration in secs
+                    Text(
+                      '${snapshot.data.durationMs / 1000}',
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28.0,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                    // Heading for Popularity
+                    Text(
+                      'POPULARITY',
+                      style: TextStyle(
+                        letterSpacing: 2.0
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    // Popularity of the track
+                    Text(
+                      '${snapshot.data.popularity}',
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28.0,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                    // Heading for explicit
+                    Text(
+                      'EXPLICIT',
+                      style: TextStyle(
+                        letterSpacing: 2.0
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    // Explicit or not
+                    Text(
+                      '${snapshot.data.explicit}',
+                      style: TextStyle(
+                        color: Colors.grey[800],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28.0,
+                        letterSpacing: 2.0,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                    // Heading for Artists
+                    Text(
+                      'ARTIST',
+                      style: TextStyle(
+                        letterSpacing: 2.0,
+                      )
+                    ),
+                    SizedBox(height: 10.0),
+                    // ListView for all artists
+                    ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      // shrink the builder to fit
+                      shrinkWrap: true,
                       // number of artists in track
                       itemCount: snapshot.data.artists.length,
                       // Build widgets
@@ -166,29 +143,56 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             // Card for each artist
-                            Card(
-                              // List Tile for each artist
-                              child: ListTile(
-                                // Artist name
-                                title: Text(
-                                  snapshot.data.artists[index].name,
-                                  style: TextStyle(
-                                    color: Colors.grey[800],
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24.0,
-                                    letterSpacing: 2.0,
-                                  ),
-                                ),
-                                // TODO: add artist image
-                                trailing: Icon(Icons.image),
+                            Text(
+                              snapshot.data.artists[index].name,
+                              style: TextStyle(
+                                color: Colors.grey[800],
+                                fontWeight: FontWeight.bold,
+                                fontSize: 28.0,
+                                letterSpacing: 2.0,
                               ),
                             ),
+                            SizedBox(height: 10.0),
                           ],
                         );
                       },
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20.0),
+                    // heading for album
+                    Text(
+                      'ALBUM',
+                      style: TextStyle(
+                        letterSpacing: 2.0
+                      ),
+                    ),
+                    SizedBox(height: 10.0),
+                    // album
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 100.0),
+                      child: Card(
+                        child: ListTile(
+                          // album name
+                          title: Text(
+                            snapshot.data.album.name,
+                            style: TextStyle(
+                              color: Colors.grey[800],
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24.0,
+                              letterSpacing: 2.0,
+                            ),
+                          ),
+                          leading: Padding(
+                            padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                            child: GestureDetector(
+                              child: Image.network(snapshot.data.album.images[snapshot.data.album.images.length - 1].url),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                  ],
+                ),
               ),
             );
           } else if (snapshot.hasError) {
